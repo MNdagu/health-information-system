@@ -4,6 +4,7 @@ set -o errexit
 
 # Install dependencies
 pip install -r requirements.txt
+cd cema
 
 # Apply migrations
 python manage.py migrate
