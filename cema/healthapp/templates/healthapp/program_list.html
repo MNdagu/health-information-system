@@ -1,0 +1,26 @@
+{% extends 'healthapp/base.html' %} {% block title %}Programs - CEMA HIS{%
+endblock %} {% block header %}Health Programs{% endblock %} {% block content %}
+<a href="{% url 'program-create' %}" class="btn btn-primary mb-3"
+  >Create New Program</a
+>
+
+{% if programs %}
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for program in programs %}
+    <tr>
+      <td>{{ program.name }}</td>
+      <td>{{ program.description|truncatewords:15 }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<div class="alert alert-info">No health programs have been created yet.</div>
+{% endif %} {% endblock %}
