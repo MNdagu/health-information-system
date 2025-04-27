@@ -1,0 +1,43 @@
+{% extends 'healthapp/base.html' %}
+{% block title %}Clients - CEMA HIS{% endblock %}
+{% block header %}Clients{% endblock %}
+
+{% block content %}
+<div class="mb-3 d-flex justify-content-between">
+  <a href="{% url 'client-create' %}" class="btn btn-primary">Register New Client</a>
+  <form class="d-flex" action="{% url 'client-list' %}" method="get">
+    <input class="form-control me-2" type="search" name="q" placeholder="Search clients" value="{{ request.GET.q|default:'' }}">
+    <button class="btn btn-outline-primary" type="submit">Search</button>
+  </form>
+</div>
+
+{% if clients %}
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Gender</th>
+      <th>Contact</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for client in clients %}
+    <tr>
+      <td>{{ client.get_full_name }}</td>
+      <td>{{ client.get_gender_display }}</td>
+      <td>{{ client.phone_number|default:client.email|default:"N/A" }}</td>
+      <td>
+        <a href="{% url 'client-detail' client.pk %}" class="btn btn-sm btn-primary">View</a>
+        <a href="{% url 'client-enroll' client.pk %}" class="btn btn-sm btn-success">Enroll</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<div class="alert alert-info">
+  {% if request.GET.q %}No clients found matching "{{ request.GET.q }}".{% else %}No clients have been registered yet.{% endif %}
+</div>
+{% endif %}
+{% endblock %}

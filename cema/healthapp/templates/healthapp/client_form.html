@@ -1,0 +1,52 @@
+{% extends 'healthapp/base.html' %}
+{% block title %}Register Client - CEMA HIS{% endblock %}
+{% block header %}Register New Client{% endblock %}
+
+{% block content %}
+<form method="post">
+  {% csrf_token %}
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <label for="{{ form.first_name.id_for_label }}">First Name</label>
+      {{ form.first_name.errors }}
+      <input type="text" class="form-control" id="{{ form.first_name.id_for_label }}" name="{{ form.first_name.html_name }}" required>
+    </div>
+    <div class="col-md-6 mb-3">
+      <label for="{{ form.last_name.id_for_label }}">Last Name</label>
+      {{ form.last_name.errors }}
+      <input type="text" class="form-control" id="{{ form.last_name.id_for_label }}" name="{{ form.last_name.html_name }}" required>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <label for="{{ form.date_of_birth.id_for_label }}">Date of Birth</label>
+      {{ form.date_of_birth.errors }}
+      <input type="date" class="form-control" id="{{ form.date_of_birth.id_for_label }}" name="{{ form.date_of_birth.html_name }}" required>
+    </div>
+    <div class="col-md-6 mb-3">
+      <label for="{{ form.gender.id_for_label }}">Gender</label>
+      {{ form.gender.errors }}
+      <select class="form-select" id="{{ form.gender.id_for_label }}" name="{{ form.gender.html_name }}" required>
+        <option value="" selected disabled>Select gender</option>
+        <option value="M">Male</option>
+        <option value="F">Female</option>
+        <option value="O">Other</option>
+      </select>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <label for="{{ form.phone_number.id_for_label }}">Phone Number</label>
+      {{ form.phone_number.errors }}
+      <input type="tel" class="form-control" id="{{ form.phone_number.id_for_label }}" name="{{ form.phone_number.html_name }}">
+    </div>
+    <div class="col-md-6 mb-3">
+      <label for="{{ form.email.id_for_label }}">Email</label>
+      {{ form.email.errors }}
+      <input type="email" class="form-control" id="{{ form.email.id_for_label }}" name="{{ form.email.html_name }}">
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">Register</button>
+  <a href="{% url 'client-list' %}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

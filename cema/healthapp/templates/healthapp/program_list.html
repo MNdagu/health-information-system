@@ -1,8 +1,9 @@
-{% extends 'healthapp/base.html' %} {% block title %}Programs - CEMA HIS{%
-endblock %} {% block header %}Health Programs{% endblock %} {% block content %}
-<a href="{% url 'program-create' %}" class="btn btn-primary mb-3"
-  >Create New Program</a
->
+{% extends 'healthapp/base.html' %}
+{% block title %}Programs - CEMA HIS{% endblock %}
+{% block header %}Health Programs{% endblock %}
+
+{% block content %}
+<a href="{% url 'program-create' %}" class="btn btn-primary mb-3">Create New Program</a>
 
 {% if programs %}
 <table class="table table-striped">
@@ -23,4 +24,5 @@ endblock %} {% block header %}Health Programs{% endblock %} {% block content %}
 </table>
 {% else %}
 <div class="alert alert-info">No health programs have been created yet.</div>
-{% endif %} {% endblock %}
+{% endif %}
+{% endblock %}

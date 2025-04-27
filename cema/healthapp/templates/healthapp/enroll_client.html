@@ -1,0 +1,29 @@
+{% extends 'healthapp/base.html' %}
+{% block title %}Enroll Client - CEMA HIS{% endblock %}
+{% block header %}Enroll {{ client.get_full_name }}{% endblock %}
+
+{% block content %}
+<a href="{% url 'client-detail' client.pk %}" class="btn btn-secondary mb-3">Back</a>
+
+{% if available_programs %}
+<form method="post">
+  {% csrf_token %}
+  <div class="mb-3">
+    <label for="program">Select Program</label>
+    <select class="form-select" id="program" name="program" required>
+      <option value="" selected disabled>Choose a program</option>
+      {% for program in available_programs %}
+      <option value="{{ program.id }}">{{ program.name }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <button type="submit" class="btn btn-primary">Enroll</button>
+  <a href="{% url 'client-detail' client.pk %}" class="btn btn-secondary">Cancel</a>
+</form>
+{% else %}
+<div class="alert alert-info">
+  <p>Client is already enrolled in all available programs.</p>
+  <a href="{% url 'program-create' %}" class="btn btn-primary">Create New Program</a>
+</div>
+{% endif %}
+{% endblock %}

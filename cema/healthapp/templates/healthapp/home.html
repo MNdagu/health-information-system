@@ -1,5 +1,8 @@
-{% extends 'healthapp/base.html' %} {% block title %}Home - CEMA HIS{% endblock
-%} {% block header %}Dashboard{% endblock %} {% block content %}
+{% extends 'healthapp/base.html' %}
+{% block title %}Home - CEMA HIS{% endblock %}
+{% block header %}Dashboard{% endblock %}
+
+{% block content %}
 <div class="row">
   <div class="col-md-4">
     <div class="card mb-3">
@@ -7,9 +10,7 @@
         <h5>Health Programs</h5>
         <p class="display-4">{{ programs_count }}</p>
         <a href="{% url 'program-list' %}" class="btn btn-primary">View</a>
-        <a href="{% url 'program-create' %}" class="btn btn-outline-primary"
-          >Create</a
-        >
+        <a href="{% url 'program-create' %}" class="btn btn-outline-primary">Create</a>
       </div>
     </div>
   </div>
@@ -19,9 +20,7 @@
         <h5>Clients</h5>
         <p class="display-4">{{ clients_count }}</p>
         <a href="{% url 'client-list' %}" class="btn btn-primary">View</a>
-        <a href="{% url 'client-create' %}" class="btn btn-outline-primary"
-          >Register</a
-        >
+        <a href="{% url 'client-create' %}" class="btn btn-outline-primary">Register</a>
       </div>
     </div>
   </div>
@@ -39,10 +38,7 @@
 <div class="card">
   <div class="card-header">About CEMA Health Information System</div>
   <div class="card-body">
-    <p>
-      This system allows healthcare providers to create programs, register
-      clients, and manage enrollments.
-    </p>
+    <p>This system allows healthcare providers to create programs, register clients, and manage enrollments.</p>
     <p>API available at <a href="/healthapp/api/">API Endpoints</a></p>
   </div>
 </div>
