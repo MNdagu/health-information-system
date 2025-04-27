@@ -1,1 +1,1 @@
-web: gunicorn cema.wsgi:application
+web: cd cema && gunicorn cema.wsgi:application
